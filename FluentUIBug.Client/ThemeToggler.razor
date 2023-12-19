@@ -1,0 +1,37 @@
+﻿@rendermode InteractiveAuto
+
+<FluentDesignTheme @bind-Mode="@Mode"
+                   CustomColor="#682079"
+                   OnLuminanceChanged="@OnLuminanceChanged"
+                   StorageName="myapp" />
+
+<FluentButton Appearance="Appearance.Stealth" OnClick="OnToggleLuminance">
+    <FluentIcon Value="@(new Icons.Regular.Size20.DarkTheme())" Color="Color.Neutral" Title="Mode" />
+</FluentButton>
+
+@code {
+    bool isDark = false;
+
+    public DesignThemeModes Mode { get; set; }
+
+    public bool IsDark => Mode == DesignThemeModes.Dark || (Mode == DesignThemeModes.System && isDark);
+
+    void OnLuminanceChanged(LuminanceChangedEventArgs e)
+    {
+        if (Mode != e.Mode)
+            Mode = e.Mode;
+
+        isDark = e.IsDark;
+        StateHasChanged();
+    }
+
+    void OnToggleLuminance()
+    {
+        if (IsDark)
+            Mode = DesignThemeModes.Light;
+        else
+            Mode = DesignThemeModes.Dark;
+
+        StateHasChanged();
+    }
+}

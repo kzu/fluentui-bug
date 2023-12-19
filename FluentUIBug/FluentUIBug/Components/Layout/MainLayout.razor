@@ -1,12 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="main">
-    <FluentMainLayout>
-        <Header>
-            Stack overflow bug
-        </Header>
-        <Body>
+<FluentLayout>
+    <FluentHeader>
+        <a href="/">
+            <FluentIcon Value="@(new Icons.Regular.Size20.Home())" Color="Color.Fill" />
+        </a>
+        <FluentSpacer />
+        <ThemeToggler />
+    </FluentHeader>
+    <FluentBodyContent>
+        <div class="content">
             @Body
-        </Body>
-    </FluentMainLayout>
-</div>
+        </div>
+    </FluentBodyContent>
+</FluentLayout>
